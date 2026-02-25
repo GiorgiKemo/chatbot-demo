@@ -26,7 +26,7 @@ Create token here: `https://huggingface.co/settings/tokens`
 Use Vercel CLI so `/api/chat` works locally:
 
 ```bash
-vercel dev
+npx vercel dev
 ```
 
 Then open `http://localhost:3000`.

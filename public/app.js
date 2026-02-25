@@ -5,7 +5,6 @@ const messagesBox = document.getElementById("chat-messages");
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 
-const HF_API_TOKEN = "PUT_YOUR_HF_TOKEN_HERE";
 const HF_MODEL = "Qwen/Qwen2.5-7B-Instruct";
 const chatHistory = [
   {
@@ -40,33 +39,23 @@ renderMessage(
 );
 
 async function requestHuggingFaceReply(messages) {
-  if (!HF_API_TOKEN || HF_API_TOKEN === "PUT_YOUR_HF_TOKEN_HERE") {
-    throw new Error("Set your Hugging Face token in public/app.js.");
-  }
-
-  const response = await fetch(
-    "https://router.huggingface.co/v1/chat/completions",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${HF_API_TOKEN}`,
-      },
-      body: JSON.stringify({
-        model: HF_MODEL,
-        messages,
-        max_tokens: 280,
-        temperature: 0.7,
-      }),
-    }
-  );
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: HF_MODEL,
+      messages,
+    }),
+  });
 
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
     throw new Error(data?.error || `${response.status} ${response.statusText}`);
   }
 
-  const reply = data?.choices?.[0]?.message?.content;
+  const reply = data?.reply;
   if (typeof reply === "string" && reply.trim()) {
     return reply.trim();
   }

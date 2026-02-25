@@ -1,35 +1,32 @@
-# AI Chatbot Demo (Static)
+# AI Chatbot Demo (Vercel + Hugging Face)
 
 Single-page website with a floating chatbot widget in the lower-right corner.
 
-This version is frontend-only and works on GitHub Pages.
-
 ## How it works
 
-- Uses plain HTML/CSS/JS (no backend server)
-- Calls Hugging Face chat completions API directly from browser
-- Stores token and model in browser `localStorage`
+- Frontend is static HTML/CSS/JS in `public/`
+- Frontend calls `/api/chat`
+- Vercel Serverless Function in `api/chat.js` calls Hugging Face using server-side env var `HF_API_TOKEN`
 
-## Local preview
+## Deploy to Vercel
 
-Open `public/index.html` directly in your browser, or serve `public/` with any static server.
+1. Import this repo in Vercel (`https://vercel.com/new`).
+2. Project settings:
+   - Framework Preset: `Other`
+   - Build Command: leave empty
+   - Output Directory: leave empty
+3. In `Settings -> Environment Variables`, add:
+   - `HF_API_TOKEN` = your Hugging Face token
+4. Redeploy.
 
-## Deploy to GitHub Pages
+Create token here: `https://huggingface.co/settings/tokens`
 
-1. Push this project to a GitHub repo.
-2. In GitHub: `Settings -> Pages`.
-3. Under `Build and deployment`, select `Deploy from a branch`.
-4. Choose branch `main` (or your default branch) and folder `/public`.
-5. Save and open your Pages URL.
+## Local development
 
-## First use
+Use Vercel CLI so `/api/chat` works locally:
 
-1. Open `public/app.js`.
-2. Set `HF_API_TOKEN` to your Hugging Face token.
-3. Open the website and start chatting.
+```bash
+vercel dev
+```
 
-Create a token here: `https://huggingface.co/settings/tokens`
-
-## Important note
-
-Because this is frontend-only, your token is used in the browser and is visible to anyone with access to that browser session. For production apps, use a backend proxy.
+Then open `http://localhost:3000`.

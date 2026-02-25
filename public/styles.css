@@ -1,0 +1,236 @@
+:root {
+  --bg: #f2efe9;
+  --ink: #1d1d1d;
+  --accent: #0f8a6d;
+  --accent-dark: #0c6e56;
+  --surface: #fffcf6;
+  --surface-2: #ffffff;
+  --line: #d8d2c6;
+  --muted: #676256;
+  --shadow: 0 24px 60px rgba(18, 26, 22, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(15, 138, 109, 0.22),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 172, 84, 0.2),
+      transparent 30%
+    ),
+    var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.page {
+  width: min(1080px, 92vw);
+  margin: 0 auto;
+  padding: 4rem 0 6rem;
+}
+
+.hero h1 {
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 1.08;
+  margin: 0.5rem 0 1rem;
+  max-width: 780px;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 10px 32px rgba(42, 49, 43, 0.08);
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.chat-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.2rem;
+  background: var(--accent);
+  color: #f8f8f8;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.chat-toggle:hover {
+  transform: translateY(-2px);
+  background: var(--accent-dark);
+}
+
+.chat-widget {
+  position: fixed;
+  right: 1rem;
+  bottom: 4.8rem;
+  width: min(400px, calc(100vw - 2rem));
+  height: min(68vh, 580px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  transform-origin: bottom right;
+  animation: growIn 180ms ease;
+  z-index: 19;
+}
+
+.hidden {
+  display: none;
+}
+
+.chat-header {
+  padding: 0.8rem 1rem;
+  background: linear-gradient(120deg, #e8fff8, #fff5e8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.chat-header p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #2f3a34;
+}
+
+.chat-messages {
+  padding: 0.9rem;
+  overflow: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  background: #fffdfa;
+}
+
+.message {
+  max-width: 88%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: #0f8a6d;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.message.assistant {
+  align-self: flex-start;
+  background: #efede8;
+  color: #1f2220;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-form {
+  display: flex;
+  gap: 0.55rem;
+  padding: 0.75rem;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+
+.chat-form input {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.7rem;
+  font: inherit;
+}
+
+.chat-form input:focus {
+  outline: 2px solid rgba(15, 138, 109, 0.35);
+  border-color: var(--accent);
+}
+
+.chat-form button {
+  border: none;
+  border-radius: 10px;
+  background: #111;
+  color: #fff;
+  padding: 0 1rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+@keyframes growIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding-top: 2.5rem;
+  }
+
+  .chat-widget {
+    height: 70vh;
+  }
+}

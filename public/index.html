@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chatbot Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Demo by Giorgi Kemoklidze</p>
+        <h1>AI Chatbot Demo Website</h1>
+        <p class="subtitle">
+          This is a demo website made by Giorgi Kemoklidze to showcase chatbot
+          development for client projects.
+        </p>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Portfolio Demo</h2>
+          <p>
+            Built as a simple one-page chatbot demonstration for presentations.
+          </p>
+        </article>
+        <article class="card">
+          <h2>Made By Giorgi</h2>
+          <p>
+            The goal is to show how Giorgi Kemoklidze can deliver chatbot
+            integrations quickly.
+          </p>
+        </article>
+        <article class="card">
+          <h2>Live Chat Experience</h2>
+          <p>
+            Visitors can ask questions and test a real AI chat flow directly.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <button id="chat-toggle" class="chat-toggle" aria-label="Open chatbot">
+      AI Chat
+    </button>
+
+    <aside id="chat-widget" class="chat-widget hidden" aria-live="polite">
+      <header class="chat-header">
+        <div>
+          <strong>Assistant</strong>
+          <p>Demo site by Giorgi Kemoklidze</p>
+        </div>
+        <button id="chat-close" class="icon-btn" aria-label="Close chatbot">
+          x
+        </button>
+      </header>
+
+      <div id="chat-messages" class="chat-messages"></div>
+
+      <form id="chat-form" class="chat-form">
+        <input
+          id="chat-input"
+          type="text"
+          placeholder="Type your question..."
+          autocomplete="off"
+          required
+        />
+        <button type="submit">Send</button>
+      </form>
+    </aside>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
